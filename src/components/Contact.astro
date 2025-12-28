@@ -1,0 +1,98 @@
+---
+---
+
+<section class="py-24 bg-white/50 backdrop-blur-sm border-t border-gray-100">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">We're here to help</h2>
+      <p class="text-gray-600">Have questions or feedback? Reach out to our team directly.</p>
+    </div>
+
+    <div id="contact-container" class="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-gray-200/50 border border-gray-100">
+      
+      <div id="contact-success" class="hidden text-center py-12">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+        <p class="text-gray-600">Thanks for reaching out. We'll get back to you soon.</p>
+      </div>
+
+      <form id="contact-form" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label for="name" class="text-sm font-medium text-gray-700">Name</label>
+            <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all" placeholder="John Doe" required />
+          </div>
+          <div class="space-y-2">
+            <label for="email" class="text-sm font-medium text-gray-700">Email</label>
+            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all" placeholder="john@example.com" required />
+          </div>
+        </div>
+        
+        <div class="space-y-2">
+          <label for="message" class="text-sm font-medium text-gray-700">Message</label>
+          <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all resize-none" placeholder="How can we help you?" required></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-4 rounded-xl bg-gray-900 text-white font-semibold hover:bg-black transition-colors shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center">
+            <span class="default-state">Send Message</span>
+            <span class="loading-state hidden">
+                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+    const form = document.getElementById('contact-form');
+    // REPLACE THIS URL with your Google Apps Script Web App URL
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby2MgQ-vykuV1LYiM4NIxoTibNBvZqs6JnbC-KcR3verHY_grgSGu68adIuIjOVjzyFEg/exec';
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const button = form.querySelector('button');
+            const defaultState = button.querySelector('.default-state');
+            const loadingState = button.querySelector('.loading-state');
+            const container = document.getElementById('contact-container');
+            const successMsg = document.getElementById('contact-success');
+
+            // Set loading state
+            button.disabled = true;
+            defaultState.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+
+            try {
+                if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_SCRIPT_URL_HERE') {
+                     // Simulation for demo purposes
+                     await new Promise(resolve => setTimeout(resolve, 1500));
+                     console.log("Simulating submission. Replace GOOGLE_SCRIPT_URL.");
+                } else {
+                    const formData = new FormData(form);
+                    formData.append('formType', 'contact');
+                    
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        body: formData,
+                        mode: 'no-cors'
+                    });
+                }
+
+                form.classList.add('hidden');
+                successMsg.classList.remove('hidden');
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Something went wrong. Please try again.');
+                button.disabled = false;
+                defaultState.classList.remove('hidden');
+                loadingState.classList.add('hidden');
+            }
+        });
+    }
+</script>

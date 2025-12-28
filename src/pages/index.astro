@@ -1,16 +1,40 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import FeatureSlide from '../components/FeatureSlide.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Footprints - Your Journey, Visualized.">
+	<main>
+		<Hero />
+		
+		<div class="space-y-0">
+			<FeatureSlide 
+				title="Visualize Your Path"
+				description="See exactly where you've been with our beautiful, interactive maps. Every step is recorded and visualized in stunning detail, allowing you to relive your journeys."
+				imageSrc="/map.png"
+				imageAlt="Map interface showing a route"
+			/>
+			
+			<FeatureSlide 
+				title="Track Your Progress"
+				description="Keep tabs on your daily activity, distance covered, and milestones reached. Our intuitive dashboard gives you all the insights you need to stay motivated."
+				imageSrc="/dashboard.png"
+				imageAlt="Dashboard showing stats"
+				reversed={true}
+			/>
+			
+			<FeatureSlide 
+				title="Showcase Achievements"
+				description="Earn badges (or 'Footprints') for exploring new places. Build your traveler profile and share your accomplishments with a community of explorers."
+				imageSrc="/profile.png"
+				imageAlt="User profile with badges"
+			/>
+		</div>
+
+		<Contact />
+	</main>
+	<Footer />
+</Layout>
