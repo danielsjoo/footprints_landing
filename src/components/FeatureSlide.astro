@@ -5,46 +5,81 @@ interface Props {
   imageSrc: string;
   imageAlt: string;
   reversed?: boolean;
+  additionalImages?: string[];
 }
 
-const { title, description, imageSrc, imageAlt, reversed = false } = Astro.props;
+const {
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+  reversed = false,
+  additionalImages = [],
+} = Astro.props;
 ---
 
 <section class="py-24 lg:py-32 relative overflow-hidden group">
-  <!-- Subtle background decoration for each slide -->
-  <div class={`absolute -z-10 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-100/40 to-purple-100/40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 ${reversed ? '-left-64' : '-right-64'}`}></div>
-
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class={`flex flex-col lg:flex-row items-center gap-16 lg:gap-24 ${reversed ? 'lg:flex-row-reverse' : ''}`}>
-      
+    <div
+      class={`flex flex-col lg:flex-row items-center gap-12 lg:gap-16 ${reversed ? "lg:flex-row-reverse" : ""}`}
+    >
       <!-- Text Content -->
       <div class="flex-1 text-center lg:text-left space-y-6">
         <h2 class="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">
-            {title}
+          {title}
         </h2>
         <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
-            {description}
+          {description}
         </p>
-
       </div>
 
       <!-- Image/Visual -->
-      <div class="flex-1 w-full max-w-lg lg:max-w-none relative">
-        <div class="relative rounded-3xl overflow-hidden shadow-lg shadow-indigo-100/50 border border-gray-100 bg-white">
-            <img 
-                src={imageSrc} 
-                alt={imageAlt}
-                class="w-full h-auto object-cover"
-                loading="lazy"
-            />
-        </div>
-        
-        <!-- Decoration dots -->
-        <div class="absolute -z-10 -bottom-12 -right-12 text-indigo-100">
-            <svg width="100" height="100" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
-        </div>
+      <div
+        class="flex-1 w-full max-w-lg lg:max-w-none relative flex justify-center"
+      >
+        {
+          additionalImages.length > 0 ? (
+            <div class="flex gap-4 relative max-h-[80vh] items-center justify-center">
+              <div class="relative transition-transform hover:scale-105 duration-300">
+                <div class="bg-white p-2 rounded-3xl shadow-2xl w-fit mx-auto">
+                  <img
+                    src={`${import.meta.env.BASE_URL}${imageSrc.replace(/^\//, '')}`}
+                    alt={imageAlt}
+                    class="w-auto h-auto object-contain max-h-[60vh] lg:max-h-[70vh]"
+                    style="clip-path: inset(7% 0 3.5% 0); margin-top: -7%; margin-bottom: -3.5%;"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              {additionalImages.map((img, index) => (
+                <div class="relative transition-transform hover:scale-105 duration-300">
+                  <div class="bg-white p-2 rounded-3xl shadow-2xl w-fit mx-auto">
+                    <img
+                      src={`${import.meta.env.BASE_URL}${img.replace(/^\//, '')}`}
+                      alt={`${imageAlt} ${index + 2}`}
+                      class="w-auto h-auto object-contain max-h-[60vh] lg:max-h-[70vh]"
+                      style="clip-path: inset(7% 0 3.5% 0); margin-top: -7%; margin-bottom: -3.5%;"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="relative inline-block max-h-[80vh]">
+              <div class="bg-white p-2 rounded-3xl shadow-2xl w-fit mx-auto">
+                <img
+                  src={`${import.meta.env.BASE_URL}${imageSrc.replace(/^\//, '')}`}
+                  alt={imageAlt}
+                  class="w-full h-full max-h-[80vh] object-contain"
+                  style="clip-path: inset(7% 0 3.5% 0); margin-top: -7%; margin-bottom: -3.5%;"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          )
+        }
       </div>
-
     </div>
   </div>
 </section>

@@ -1,36 +1,45 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import FeatureSlide from '../components/FeatureSlide.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import FeatureSlide from "../components/FeatureSlide.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="Footprints - Your Journey, Visualized.">
+<Layout title="Footprints - Organize Your World.">
 	<main>
 		<Hero />
-		
+
 		<div class="space-y-0">
-			<FeatureSlide 
-				title="Visualize Your Path"
-				description="See exactly where you've been with our beautiful, interactive maps. Every step is recorded and visualized in stunning detail, allowing you to relive your journeys."
-				imageSrc="/map.png"
-				imageAlt="Map interface showing a route"
+			<FeatureSlide
+				title="Capture Full Moments"
+				description="Don't just post a picture. Log the time, the location, and your thoughts. Create 'Footprints' that capture the true depth of your experiences."
+				imageSrc="/Footprintfeed.png"
+				imageAlt="Feed showing rich footprints with details"
 			/>
-			
-			<FeatureSlide 
-				title="Track Your Progress"
-				description="Keep tabs on your daily activity, distance covered, and milestones reached. Our intuitive dashboard gives you all the insights you need to stay motivated."
-				imageSrc="/dashboard.png"
-				imageAlt="Dashboard showing stats"
+
+			<FeatureSlide
+				title="Build Any Kind of Trail"
+				description="Flexibility is key. Use trails to track a workout habit, log an entire vacation, or just document cool places you find. Your life isn't one-dimensional, and your timeline shouldn't be either."
+				imageSrc="/Trailexample1.png"
+				imageAlt="Example of a trail timeline"
+				additionalImages={["/trailexample2.png"]}
 				reversed={true}
 			/>
-			
-			<FeatureSlide 
-				title="Showcase Achievements"
-				description="Earn badges (or 'Footprints') for exploring new places. Build your traveler profile and share your accomplishments with a community of explorers."
+
+			<FeatureSlide
+				title="Effortless Organization"
+				description="Group meaningful footprints into trails with a single tap. Turn a scattered collection of moments into a cohesive story."
+				imageSrc="/addtotrails.png"
+				imageAlt="Interface for adding footprints to trails"
+			/>
+
+			<FeatureSlide
+				title="Make a custom profile"
+				description="See your diverse trails in one unified profile. From your daily coffee runs to your cross-country moves, see it all in one place."
 				imageSrc="/profile.png"
-				imageAlt="User profile with badges"
+				imageAlt="User profile showing various footprints"
+				reversed={true}
 			/>
 		</div>
 
