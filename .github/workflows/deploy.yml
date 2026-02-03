@@ -22,3 +22,4 @@ jobs:
           path: .
           node-version: 20
           package-manager: npm@latest
+# Trigger
