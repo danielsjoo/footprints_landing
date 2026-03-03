@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+import content from "../data/terms-content.html?raw";
+---
+
+<Layout title="Terms and Conditions - Footprints">
+  <main class="min-h-screen">
+    <article
+      class="container mx-auto px-4 py-16 max-w-3xl prose prose-gray prose-headings:font-semibold prose-a:text-indigo-600 prose-a:no-underline hover:prose-a:underline"
+      set:html={content}
+    />
+  </main>
+</Layout>
+
+<style>
+  /* Override inline styles from imported HTML for consistency */
+  article :global([data-custom-class="title"]) {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+  }
+  article :global([data-custom-class="subtitle"]) {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+  article :global([data-custom-class="body_text"]),
+  article :global([data-custom-class="heading_1"]) {
+    color: #374151;
+    line-height: 1.625;
+  }
+  article :global(div) {
+    margin-bottom: 0.35rem;
+  }
+  /* Collapse spacer divs (only contain <br>) so they don't create huge gaps */
+  article :global(div:has(> br:only-child)) {
+    margin: 0;
+    min-height: 0;
+  }
+  article :global(ul),
+  article :global(ol) {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+  article :global(strong) {
+    font-weight: 600;
+    color: #111827;
+  }
+  article :global(h2) {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: #111827;
+  }
+  article :global(h3) {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #111827;
+  }
+</style>
