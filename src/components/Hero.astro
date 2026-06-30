@@ -1,5 +1,6 @@
 ---
-
+const APP_STORE_URL =
+    "https://apps.apple.com/us/app/footprints-social-logging/id6756193003?uo=4";
 ---
 
 <section class="relative pt-32 pb-48 lg:pt-48 lg:pb-64 overflow-hidden">
@@ -29,129 +30,37 @@
             or document places.
         </p>
 
-        <!-- Waitlist Form -->
-        <div id="waitlist-container" class="max-w-md mx-auto relative">
-            <div
-                id="waitlist-success"
-                class="hidden p-4 rounded-2xl bg-green-50 border border-green-100 text-green-800"
+        <div class="flex flex-col items-center gap-4">
+            <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Install Footprints on iOS from the App Store"
+                class="group inline-flex items-center gap-3 rounded-2xl bg-gray-900 px-6 py-4 text-white shadow-xl shadow-gray-300/60 transition-all duration-300 hover:-translate-y-1 hover:bg-black hover:shadow-2xl hover:shadow-gray-400/60 active:scale-95"
             >
-                <div class="flex items-center justify-center gap-2">
-                    <svg
-                        class="w-5 h-5 text-green-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        ><path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M5 13l4 4L19 7"></path></svg
+                <svg
+                    class="h-7 w-7 flex-shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M17.05 12.34c-.03-3.06 2.5-4.53 2.61-4.6-1.42-2.08-3.63-2.36-4.41-2.39-1.88-.19-3.66 1.1-4.62 1.1-.95 0-2.43-1.08-3.99-1.05-2.05.03-3.94 1.19-5 3.03-2.13 3.7-.54 9.18 1.53 12.18 1.01 1.47 2.22 3.12 3.81 3.06 1.53-.06 2.1-.99 3.94-.99 1.84 0 2.36.99 3.98.96 1.64-.03 2.68-1.5 3.69-2.98 1.16-1.7 1.64-3.34 1.66-3.43-.04-.02-3.17-1.22-3.2-4.89ZM14.02 3.37c.84-1.02 1.41-2.44 1.26-3.85-1.21.05-2.68.81-3.55 1.82-.78.9-1.46 2.35-1.28 3.73 1.35.1 2.73-.69 3.57-1.7Z"
+                    ></path>
+                </svg>
+                <span class="text-left leading-tight">
+                    <span class="block text-xs font-medium text-gray-300"
+                        >Available now</span
                     >
-                    <span class="font-medium"
-                        >You're on the list! We'll be in touch.</span
+                    <span class="block text-lg font-semibold"
+                        >Install on iOS</span
                     >
-                </div>
-            </div>
+                </span>
+            </a>
 
-            <form
-                id="waitlist-form"
-                class="bg-white p-2 rounded-2xl shadow-xl shadow-indigo-100/50 border border-gray-100 transiton-all hover:shadow-2xl hover:shadow-indigo-200/50 hover:-translate-y-1 duration-300 transition-all"
-            >
-                <div class="flex flex-col sm:flex-row gap-2">
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Enter your email"
-                        required
-                        class="flex-1 px-4 py-3 rounded-xl bg-gray-50 border-transparent focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-gray-900"
-                    />
-                    <button
-                        type="submit"
-                        class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md transition-all active:scale-95 whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center min-w-[140px]"
-                    >
-                        <span class="default-state">Join Waitlist</span>
-                        <span class="loading-state hidden">
-                            <svg
-                                class="animate-spin h-5 w-5 text-white"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                            >
-                                <circle
-                                    class="opacity-25"
-                                    cx="12"
-                                    cy="12"
-                                    r="10"
-                                    stroke="currentColor"
-                                    stroke-width="4"></circle>
-                                <path
-                                    class="opacity-75"
-                                    fill="currentColor"
-                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                ></path>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
-            </form>
+            <p class="text-sm text-gray-500">
+                Free on the App Store for iPhone and iPad.
+            </p>
         </div>
-        <p class="mt-4 text-sm text-gray-500">
-            Join our beta test or be the first on launch.
-        </p>
     </div>
 </section>
-
-<script>
-    const form = document.getElementById("waitlist-form");
-    // REPLACE THIS URL with your Google Apps Script Web App URL
-    const GOOGLE_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycby2MgQ-vykuV1LYiM4NIxoTibNBvZqs6JnbC-KcR3verHY_grgSGu68adIuIjOVjzyFEg/exec";
-
-    if (form) {
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const button = form.querySelector("button");
-            const defaultState = button.querySelector(".default-state");
-            const loadingState = button.querySelector(".loading-state");
-            const container = document.getElementById("waitlist-container");
-            const successMsg = document.getElementById("waitlist-success");
-
-            // Set loading state
-            button.disabled = true;
-            defaultState.classList.add("hidden");
-            loadingState.classList.remove("hidden");
-
-            try {
-                if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_URL_HERE") {
-                    // Simulation for demo purposes since user hasn't set up the backend yet
-                    await new Promise((resolve) => setTimeout(resolve, 1500));
-                    console.log(
-                        "Simulating submission. Replace GOOGLE_SCRIPT_URL to make it real.",
-                    );
-                } else {
-                    const formData = new FormData(form);
-                    // Add a specific sheet name if your script handles multiple sheets, or just generic 'type'
-                    formData.append("formType", "waitlist");
-
-                    await fetch(GOOGLE_SCRIPT_URL, {
-                        method: "POST",
-                        body: formData,
-                        mode: "no-cors", // Important for Google Apps Script
-                    });
-                }
-
-                // Show success
-                form.classList.add("hidden");
-                successMsg.classList.remove("hidden");
-            } catch (err) {
-                console.error("Error:", err);
-                alert("Something went wrong. Please try again.");
-
-                // Reset state
-                button.disabled = false;
-                defaultState.classList.remove("hidden");
-                loadingState.classList.add("hidden");
-            }
-        });
-    }
-</script>
